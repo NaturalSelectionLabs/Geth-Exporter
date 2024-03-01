@@ -1,6 +1,6 @@
 module github.com/naturalselectionlabs/geth-exporter
 
-go 1.22.0
+go 1.21.4
 
 require (
 	github.com/ethereum/go-ethereum v1.13.14
