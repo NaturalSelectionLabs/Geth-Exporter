@@ -1,10 +1,10 @@
 package exporter
 
 import (
+	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/naturalselectionlabs/geth-exporter/config"
 	"github.com/prometheus/client_golang/prometheus"
 	"go.uber.org/zap"
-	"strconv"
 )
 
 type GethMetricsCollector struct {
@@ -32,17 +32,18 @@ func (g GethMetricsCollector) Collect(metrics chan<- prometheus.Metric) {
 	case config.HexResult:
 		value, ok := g.Result.(string)
 		if ok {
-			i, err := strconv.ParseInt(value, 0, 64)
+			i, err := hexutil.DecodeBig(value)
 			if err != nil {
 				zap.L().Error("Error convert", zap.Error(err))
-			} else {
-				metrics <- prometheus.MustNewConstMetric(
-					g.Metrics.Desc,
-					g.Metrics.ValueType,
-					float64(i),
-					g.Metrics.LabelValues...,
-				)
+				return
 			}
+			f, _ := i.Float64()
+			metrics <- prometheus.MustNewConstMetric(
+				g.Metrics.Desc,
+				g.Metrics.ValueType,
+				f,
+				g.Metrics.LabelValues...,
+			)
 
 		}
 	}
