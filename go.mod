@@ -3,7 +3,7 @@ module github.com/naturalselectionlabs/geth-exporter
 go 1.21.4
 
 require (
-	github.com/ethereum/go-ethereum v1.13.14
+	github.com/ethereum/go-ethereum v1.13.15
 	github.com/labstack/echo/v4 v4.11.4
 	github.com/prometheus/client_golang v1.19.0
 	github.com/spf13/cobra v1.8.0
