@@ -6,7 +6,7 @@ require (
 	github.com/ethereum/go-ethereum v1.13.14
 	github.com/labstack/echo/v4 v4.11.4
 	github.com/prometheus/client_golang v1.19.0
-	github.com/spf13/cobra v1.8.0
+	github.com/spf13/cobra v1.8.1
 	go.uber.org/zap v1.27.0
 	gopkg.in/yaml.v3 v3.0.1
 )
